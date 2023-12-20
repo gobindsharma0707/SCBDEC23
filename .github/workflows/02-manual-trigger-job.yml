@@ -3,7 +3,7 @@ name: Manually trigger an Azure Machine Learning job
 on:
   push:
     branches:
-      -main
+      - main
   
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: ML model training steps
-      uses: az ml job create --file src/job.yml --workspace-name gobind-aml --resource-group SCB --web
+      run: az ml job create --file src/job.yml --workspace-name gobind-aml --resource-group SCB --web
       
 
 
