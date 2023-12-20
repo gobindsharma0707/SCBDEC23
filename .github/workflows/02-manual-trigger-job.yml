@@ -1,7 +1,10 @@
 name: Manually trigger an Azure Machine Learning job
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      -main
+  
 
 jobs:
   train:
@@ -15,5 +18,9 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name: ML model training steps
+      uses: az ml job create --file src/job.yml --workspace-name gobind-aml --resource-group SCB --web
+      
+
 
 

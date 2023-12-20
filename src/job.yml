@@ -1,15 +1,15 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 code: model
 command: >-
-  python 
-  --
-  --
+  python train.py
+  --training_data ${{inputs.training_data}}
+  --reg_rate ${{inputs.reg_rate}}
 inputs:
   training_data: 
     type: uri_folder 
-    path: 
+    path: azureml://subscriptions/d4111f96-6b7b-420c-80b9-a752587ebd61/resourcegroups/SCB/workspaces/gobind-aml/datastores/workspaceblobstore/paths/LocalUpload/386681db2f7cd59e8c96f5ee80b212db/data/
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
-compute: 
-experiment_name: 
-description: 
+compute: aml-compute
+experiment_name: diabetics-CImodel
+description: An expriment to predict diabetic
